@@ -1,0 +1,201 @@
+/*
+ * Charte Pro2Link — palette « Bleu Pro2Link et turquoise ».
+ * Valeurs reprises de cette charte (source unique).
+ *
+ * Importer UNE fois à la racine de l'application (avant tout autre style) :
+ *   import './theme.css';
+ * Puis n'utiliser QUE ces variables (jamais de couleur en dur) :
+ *   color: var(--pl-texte); background: var(--pl-primaire);
+ *
+ * Mode sombre : automatique selon le système, ou forcé avec
+ *   <html data-theme="dark">  /  <html data-theme="light">
+ */
+
+:root {
+  /* ── Marque ─────────────────────────────────────────────── */
+  --pl-primaire: #0F4C81;
+  --pl-primaire-survol: #0B3A63;
+  --pl-primaire-teinte: #E6EFF8;
+  --pl-sur-primaire: #FFFFFF;
+  --pl-secondaire: #14B8A6;
+  --pl-secondaire-survol: #0D9488;
+  --pl-secondaire-teinte: #E0F7F4;
+  --pl-sur-secondaire: #04302F; /* texte sur le turquoise : toujours foncé */
+
+  /* ── Neutres ────────────────────────────────────────────── */
+  --pl-fond: #F7F8FA;
+  --pl-surface: #FFFFFF;
+  --pl-surface-alt: #F1F3F6;
+  --pl-bordure: #E2E6EC;
+  --pl-bordure-forte: #CBD2DB;
+  --pl-bordure-champ: #848E9D; /* contour des champs : contraste ≥ 3:1 */
+  --pl-texte: #1F2937;
+  --pl-texte-secondaire: #6B7280;
+  --pl-texte-discret: #9CA3AF;
+
+  /* ── États ──────────────────────────────────────────────── */
+  --pl-succes: #18763A;
+  --pl-succes-fond: #E6F4EA;
+  --pl-avertissement: #B45309;
+  --pl-avertissement-fond: #FFF4E5;
+  --pl-danger: #C62828;
+  --pl-danger-fond: #FDECEC;
+  --pl-info: #0F4C81;
+  --pl-info-fond: #E6EFF8;
+  --pl-neutre: #4B5563;
+  --pl-neutre-fond: #F1F3F6;
+
+  /* ── Typographie ────────────────────────────────────────── */
+  --pl-police: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --pl-taille-legende: 12px;
+  --pl-taille-petit: 14px;
+  --pl-taille-corps: 16px;
+  --pl-taille-sous-titre: 18px;
+  --pl-taille-titre: 22px;
+  --pl-taille-grand-titre: 28px;
+  --pl-taille-chiffre-cle: 32px;
+
+  /* ── Espacements et rayons ──────────────────────────────── */
+  --pl-espace-xs: 4px;
+  --pl-espace-sm: 8px;
+  --pl-espace-md: 12px;
+  --pl-espace-lg: 16px;
+  --pl-espace-xl: 24px;
+  --pl-espace-xxl: 32px;
+  --pl-rayon-petit: 6px;
+  --pl-rayon: 8px;
+  --pl-rayon-carte: 12px;
+  --pl-rayon-feuille: 16px;
+  --pl-rayon-pilule: 999px;
+
+  --pl-focus: 0 0 0 3px rgba(15, 76, 129, 0.35);
+  color-scheme: light;
+}
+
+/* Mode sombre : préférence du système, sauf choix explicite « light ». */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --pl-primaire: #6BA6E0;
+    --pl-primaire-survol: #8AB9E8;
+    --pl-primaire-teinte: #142C45;
+    --pl-sur-primaire: #08223A;
+    --pl-secondaire-survol: #2DD4BF;
+    --pl-secondaire-teinte: #0F302D;
+    --pl-fond: #0E1621;
+    --pl-surface: #16202D;
+    --pl-surface-alt: #1E2A3A;
+    --pl-bordure: #2A3747;
+    --pl-bordure-forte: #3A4A5E;
+    --pl-bordure-champ: #66778C;
+    --pl-texte: #E6EAF0;
+    --pl-texte-secondaire: #A3AEBD;
+    --pl-texte-discret: #6B7686;
+    --pl-succes: #4CC27A;
+    --pl-succes-fond: #133222;
+    --pl-avertissement: #FB923C;
+    --pl-avertissement-fond: #3A2412;
+    --pl-danger: #F87171;
+    --pl-danger-fond: #3B1717;
+    --pl-info: #6BA6E0;
+    --pl-info-fond: #142C45;
+    --pl-neutre: #A3AEBD;
+    --pl-neutre-fond: #1E2A3A;
+    --pl-focus: 0 0 0 3px rgba(107, 166, 224, 0.4);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --pl-primaire: #6BA6E0;
+  --pl-primaire-survol: #8AB9E8;
+  --pl-primaire-teinte: #142C45;
+  --pl-sur-primaire: #08223A;
+  --pl-secondaire-survol: #2DD4BF;
+  --pl-secondaire-teinte: #0F302D;
+  --pl-fond: #0E1621;
+  --pl-surface: #16202D;
+  --pl-surface-alt: #1E2A3A;
+  --pl-bordure: #2A3747;
+  --pl-bordure-forte: #3A4A5E;
+  --pl-bordure-champ: #66778C;
+  --pl-texte: #E6EAF0;
+  --pl-texte-secondaire: #A3AEBD;
+  --pl-texte-discret: #6B7686;
+  --pl-succes: #4CC27A;
+  --pl-succes-fond: #133222;
+  --pl-avertissement: #FB923C;
+  --pl-avertissement-fond: #3A2412;
+  --pl-danger: #F87171;
+  --pl-danger-fond: #3B1717;
+  --pl-info: #6BA6E0;
+  --pl-info-fond: #142C45;
+  --pl-neutre: #A3AEBD;
+  --pl-neutre-fond: #1E2A3A;
+  --pl-focus: 0 0 0 3px rgba(107, 166, 224, 0.4);
+  color-scheme: dark;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+body {
+  margin: 0;
+  background: var(--pl-fond);
+  color: var(--pl-texte);
+  font-family: var(--pl-police);
+  font-size: var(--pl-taille-corps);
+  line-height: 1.5;
+}
+
+/* Montants : chiffres de largeur fixe, colonnes alignées. */
+.pl-montant { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ── Composants de base (facultatifs, prêts à l'emploi) ─────── */
+.pl-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--pl-espace-sm);
+  min-height: 40px; padding: 0 var(--pl-espace-lg);
+  border-radius: var(--pl-rayon); border: 1px solid transparent;
+  font: 600 var(--pl-taille-petit)/1 var(--pl-police); cursor: pointer;
+  transition: background-color .15s, border-color .15s;
+}
+.pl-btn:focus-visible { outline: none; box-shadow: var(--pl-focus); }
+.pl-btn:disabled { opacity: .55; cursor: not-allowed; }
+
+/* UN bouton principal par écran. */
+.pl-btn--primaire { background: var(--pl-primaire); color: var(--pl-sur-primaire); }
+.pl-btn--primaire:hover:not(:disabled) { background: var(--pl-primaire-survol); }
+/* Mise en avant (création) — jamais pour un état. */
+.pl-btn--secondaire { background: var(--pl-secondaire); color: var(--pl-sur-secondaire); }
+.pl-btn--secondaire:hover:not(:disabled) { background: var(--pl-secondaire-survol); }
+.pl-btn--contour { background: transparent; color: var(--pl-primaire); border-color: var(--pl-primaire); }
+.pl-btn--contour:hover:not(:disabled) { background: var(--pl-primaire-teinte); }
+.pl-btn--danger { background: var(--pl-danger); color: #FFFFFF; }
+
+.pl-carte {
+  background: var(--pl-surface);
+  border: 1px solid var(--pl-bordure);
+  border-radius: var(--pl-rayon-carte);
+  padding: var(--pl-espace-lg) var(--pl-espace-xl);
+}
+
+.pl-champ {
+  width: 100%; box-sizing: border-box; min-height: 40px; padding: 0 var(--pl-espace-md);
+  background: var(--pl-surface); color: var(--pl-texte);
+  border: 1px solid var(--pl-bordure-champ); border-radius: var(--pl-rayon);
+  font: inherit;
+}
+.pl-champ::placeholder { color: var(--pl-texte-discret); }
+.pl-champ:focus { outline: none; border-color: var(--pl-primaire); box-shadow: var(--pl-focus); }
+.pl-champ[aria-invalid="true"] { border-color: var(--pl-danger); }
+
+/* Badge de statut : <span class="pl-badge" data-ton="danger">En retard</span>
+   (ton donné par statuts.ts › tonDe). Toujours avec le LIBELLÉ. */
+.pl-badge {
+  display: inline-flex; align-items: center; gap: var(--pl-espace-xs);
+  padding: 2px 10px; border-radius: var(--pl-rayon-pilule);
+  font-size: var(--pl-taille-legende); font-weight: 600; white-space: nowrap;
+  color: var(--pl-neutre); background: var(--pl-neutre-fond);
+}
+.pl-badge[data-ton="succes"] { color: var(--pl-succes); background: var(--pl-succes-fond); }
+.pl-badge[data-ton="avertissement"] { color: var(--pl-avertissement); background: var(--pl-avertissement-fond); }
+.pl-badge[data-ton="danger"] { color: var(--pl-danger); background: var(--pl-danger-fond); }
+.pl-badge[data-ton="info"] { color: var(--pl-info); background: var(--pl-info-fond); }
+.pl-badge[data-ton="neutre"] { color: var(--pl-neutre); background: var(--pl-neutre-fond); }

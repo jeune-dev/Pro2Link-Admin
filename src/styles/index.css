@@ -1,0 +1,115 @@
+@import "tailwindcss";
+/* Charte Pro2Link (source unique des couleurs) : importée dans la couche base pour
+   que les utilitaires Tailwind puissent toujours la surcharger ponctuellement. */
+@import "../theme/theme.css" layer(base);
+
+/* Le mode sombre est piloté par les variables --pl-* (préférence système ou
+   data-theme) : aucune classe `dark:` n'est nécessaire. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-primaire: var(--pl-primaire);
+  --color-primaire-survol: var(--pl-primaire-survol);
+  --color-primaire-teinte: var(--pl-primaire-teinte);
+  --color-sur-primaire: var(--pl-sur-primaire);
+  --color-secondaire: var(--pl-secondaire);
+  --color-secondaire-survol: var(--pl-secondaire-survol);
+  --color-secondaire-teinte: var(--pl-secondaire-teinte);
+  --color-sur-secondaire: var(--pl-sur-secondaire);
+  --color-fond: var(--pl-fond);
+  --color-surface: var(--pl-surface);
+  --color-surface-alt: var(--pl-surface-alt);
+  --color-bordure: var(--pl-bordure);
+  --color-bordure-forte: var(--pl-bordure-forte);
+  --color-bordure-champ: var(--pl-bordure-champ);
+  --color-texte: var(--pl-texte);
+  --color-texte-secondaire: var(--pl-texte-secondaire);
+  --color-texte-discret: var(--pl-texte-discret);
+  --color-succes: var(--pl-succes);
+  --color-succes-fond: var(--pl-succes-fond);
+  --color-avertissement: var(--pl-avertissement);
+  --color-avertissement-fond: var(--pl-avertissement-fond);
+  --color-danger: var(--pl-danger);
+  --color-danger-fond: var(--pl-danger-fond);
+  --color-info: var(--pl-info);
+  --color-info-fond: var(--pl-info-fond);
+  --color-neutre: var(--pl-neutre);
+  --color-neutre-fond: var(--pl-neutre-fond);
+  --font-sans: var(--pl-police);
+  --radius-petit: 6px;
+  --radius-champ: 8px;
+  --radius-carte: 12px;
+  --radius-feuille: 16px;
+  --shadow-douce: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
+  --shadow-elevee: 0 12px 32px -12px rgb(15 76 129 / 0.25), 0 2px 6px rgb(16 24 40 / 0.06);
+  --text-legende: 12px;
+  --text-petit: 14px;
+  --text-corps: 16px;
+  --text-sous-titre: 18px;
+  --text-titre: 22px;
+  --text-grand-titre: 28px;
+  --text-chiffre-cle: 32px;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  :focus-visible { outline: 2px solid var(--pl-primaire); outline-offset: 2px; }
+  ::selection { background: var(--pl-primaire-teinte); }
+  [id] { scroll-margin-top: 88px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Lien d'évitement (navigation clavier). */
+.lien-evitement {
+  position: absolute; left: 12px; top: -48px; z-index: 100;
+  padding: 8px 14px; border-radius: 8px;
+  background: var(--pl-primaire); color: var(--pl-sur-primaire); font-weight: 600;
+}
+.lien-evitement:focus { top: 12px; }
+
+/* Fenêtres modales natives (<dialog>). */
+dialog.pl-modale {
+  /* Le reset de Tailwind (margin: 0) annule le centrage natif de <dialog>. */
+  margin: auto;
+  padding: 0; border: 1px solid var(--pl-bordure); border-radius: 16px;
+  background: var(--pl-surface); color: var(--pl-texte);
+  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 48px);
+  box-shadow: 0 24px 64px -16px rgb(0 0 0 / 0.35);
+}
+dialog.pl-modale--large { width: min(760px, calc(100vw - 32px)); }
+dialog.pl-modale::backdrop { background: rgb(14 22 33 / 0.55); backdrop-filter: blur(2px); }
+dialog.pl-modale[open] { animation: modale-entree 0.18s ease-out; }
+@keyframes modale-entree { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
+
+/* Apparition discrète (tiroir mobile, messages). */
+.apparition { animation: apparition 0.3s ease-out both; }
+@keyframes apparition { from { opacity: 0; transform: translateY(8px); } }
+
+/* Squelettes de chargement. */
+.squelette {
+  background: linear-gradient(90deg, var(--pl-surface-alt) 25%, var(--pl-bordure) 37%, var(--pl-surface-alt) 63%);
+  background-size: 400% 100%; animation: squelette 1.4s ease infinite; border-radius: 6px;
+}
+@keyframes squelette { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+
+.chiffres { font-variant-numeric: tabular-nums; }
+
+/* Séries catégorielles des graphiques : 3 premiers créneaux de la palette de
+   référence (validée daltonisme, toutes paires, clair ET sombre). Ordre fixe :
+   la couleur suit l'entité, jamais son rang. Le bleu de marque #0F4C81 est trop
+   sombre pour une série (bande de luminance) : il reste réservé à l'interface. */
+:root {
+  --viz-1: #2a78d6;
+  --viz-2: #eb6834;
+  --viz-3: #1baf7a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; }
+}
+:root[data-theme="dark"] { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; }
